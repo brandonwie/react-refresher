@@ -1,4 +1,9 @@
-.meetup-card {
-  margin: 15px;
-  width: 30rem;
+// Card component's wrapper
+.meetup-item-row {
+  border: 1px dotted red;
+  margin-top: 1.5rem;
+}
+
+// Actual Card component for representing meetups
+.meetup-item-card {
 }

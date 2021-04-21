@@ -101,7 +101,6 @@ const NewMeetupForm: React.FC = (): JSX.Element => {
 
             <Form.Group>
               <Form.Label>Description</Form.Label>
-
               <Form.Control
                 as='textarea'
                 name='description'

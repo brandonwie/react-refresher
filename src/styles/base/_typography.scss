@@ -22,25 +22,3 @@ h2 {
 main {
   margin-top: 65px;
 }
-
-.form-container {
-  width: 95%;
-}
-
-@media (min-width: 576px) {
-  .form-container {
-    width: 80%;
-  }
-}
-
-@media (min-width: 768px) {
-  .form-container {
-    width: 55%;
-  }
-}
-
-@media (min-width: 992px) {
-  .form-container {
-    width: 35%;
-  }
-}

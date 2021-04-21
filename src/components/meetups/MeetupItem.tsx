@@ -10,9 +10,9 @@ interface MeetupItemProps {
 
 export const MeetupItem = (props: MeetupItemProps) => {
   return (
-    <Row>
+    <Row className='meetup-item-row'>
       <Col className='d-flex justify-content-center'>
-        <Card className='meetup-card'>
+        <Card className='meetup-item-card'>
           <Card.Img variant='top' src={props.image} />
           <Card.Body>
             <Card.Title>{props.title}</Card.Title>

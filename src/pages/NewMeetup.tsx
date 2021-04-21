@@ -4,7 +4,7 @@ import NewMeetupForm from '../components/meetups/NewMeetupForm';
 const NewMeetupPage: React.FC = (): JSX.Element => {
   return (
     <section>
-      <Container className='container-md form-container'>
+      <Container className='form-container'>
         <h1>Register Your Meetup!</h1>
         <NewMeetupForm />
       </Container>

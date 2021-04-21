@@ -4,7 +4,8 @@ import { MeetupItem } from './MeetupItem';
 
 export const MeetupList: React.FC = (): JSX.Element => {
   return (
-    <Container>
+    <Container className='meetup-list-container'>
+      <h1>All Meetups</h1>
       {DUMMY_DATA.map((data) => {
         return <MeetupItem key={data.id} {...data} />;
       })}
