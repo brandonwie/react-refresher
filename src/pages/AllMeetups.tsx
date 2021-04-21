@@ -4,7 +4,9 @@ import { MeetupList } from '../components/meetups/MeetupList';
 const AllMeetups: React.FC = (): JSX.Element => {
   return (
     <section>
-      <MeetupList />
+      <Container className='meetup-list-container'>
+        <MeetupList />
+      </Container>
     </section>
   );
 };

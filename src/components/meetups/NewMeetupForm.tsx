@@ -5,7 +5,12 @@ import { Form, Button } from 'react-bootstrap';
 
 const schema = Yup.object().shape({
   title: Yup.string().min(1).max(255).required(),
-  image: Yup.string().required(),
+  image: Yup.string()
+    .matches(
+      /(https?:\/\/.*\.(?:png|jpg))/i,
+      'the url must be ending with jpg or png'
+    )
+    .required(),
   address: Yup.string().min(1).max(255).required(),
   description: Yup.string().min(15).max(255).required(),
 });
@@ -13,14 +18,21 @@ const schema = Yup.object().shape({
 const NewMeetupForm: React.FC = (): JSX.Element => {
   return (
     <>
+      <h1>Register Your Meetup</h1>
       <Formik
-        initialValues={{ title: '', image: '', address: '', description: '' }}
+        initialValues={{
+          title: '',
+          imageUrl: '',
+          address: '',
+          description: '',
+        }}
         validationSchema={schema}
         onSubmit={(values, { setSubmitting }) => {
           setSubmitting(true);
 
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
+            console.log(values);
             setSubmitting(false);
           }, 2000);
         }}
@@ -36,7 +48,7 @@ const NewMeetupForm: React.FC = (): JSX.Element => {
           /* and other goodies */
         }) => (
           <Form noValidate onSubmit={handleSubmit}>
-            <Form.Group>
+            <Form.Group controlId='meetup-form__title'>
               <Form.Label>Title</Form.Label>
               <Form.Control
                 type='text'
@@ -57,28 +69,28 @@ const NewMeetupForm: React.FC = (): JSX.Element => {
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group>
-              <Form.Label>Image</Form.Label>
+            <Form.Group controlId='meetup-form__image-url'>
+              <Form.Label>Image URL</Form.Label>
               <Form.Control
                 type='url'
-                name='image'
+                name='imageUrl'
                 placeholder='Enter URL'
-                value={values.image}
+                value={values.imageUrl}
                 onBlur={handleBlur}
                 onChange={handleChange}
-                isValid={touched.image && !errors.image}
-                isInvalid={touched.image && !!errors.image}
+                isValid={touched.imageUrl && !errors.imageUrl}
+                isInvalid={touched.imageUrl && !!errors.imageUrl}
                 required
               />
               <Form.Control.Feedback type='valid'>
                 Looks good!
               </Form.Control.Feedback>
               <Form.Control.Feedback type='invalid'>
-                {errors.image}
+                {errors.imageUrl}
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group>
+            <Form.Group controlId='meetup-form__address'>
               <Form.Label>Address</Form.Label>
               <Form.Control
                 type='text'
@@ -99,7 +111,7 @@ const NewMeetupForm: React.FC = (): JSX.Element => {
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group>
+            <Form.Group controlId='meetup-form__description'>
               <Form.Label>Description</Form.Label>
               <Form.Control
                 as='textarea'
@@ -120,7 +132,7 @@ const NewMeetupForm: React.FC = (): JSX.Element => {
               </Form.Control.Feedback>
             </Form.Group>
             <Button type='submit' disabled={isSubmitting}>
-              Submit
+              {isSubmitting ? 'Uploading…' : 'Submit'}
             </Button>
           </Form>
         )}
