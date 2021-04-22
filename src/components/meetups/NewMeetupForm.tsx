@@ -2,27 +2,41 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { MeetupDataType } from '../../pages/NewMeetup';
+import { v4 as uuid4 } from 'uuid';
 
 const schema = Yup.object().shape({
   title: Yup.string().min(1).max(255).required(),
-  image: Yup.string()
+  imageUrl: Yup.string()
+    .min(1)
     .matches(
       /(https?:\/\/.*\.(?:png|jpg))/i,
       'the url must be ending with jpg or png'
     )
     .required(),
+  date: Yup.string().required(),
+  time: Yup.string().required(),
   address: Yup.string().min(1).max(255).required(),
   description: Yup.string().min(15).max(255).required(),
 });
 
-const NewMeetupForm: React.FC = (): JSX.Element => {
+interface NewMeetupFormProps {
+  onAddMeetup: (meetupData: MeetupDataType) => void;
+}
+
+const NewMeetupForm: React.FC<NewMeetupFormProps> = (props): JSX.Element => {
+  const { onAddMeetup } = props;
+
   return (
     <>
       <h1>Register Your Meetup</h1>
       <Formik
         initialValues={{
+          id: uuid4(),
           title: '',
           imageUrl: '',
+          date: '',
+          time: '',
           address: '',
           description: '',
         }}
@@ -30,11 +44,11 @@ const NewMeetupForm: React.FC = (): JSX.Element => {
         onSubmit={(values, { setSubmitting }) => {
           setSubmitting(true);
 
+          onAddMeetup(values);
+
           setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            console.log(values);
             setSubmitting(false);
-          }, 2000);
+          }, 1000);
         }}
       >
         {({
@@ -45,7 +59,6 @@ const NewMeetupForm: React.FC = (): JSX.Element => {
           handleBlur,
           handleSubmit,
           isSubmitting,
-          /* and other goodies */
         }) => (
           <Form noValidate onSubmit={handleSubmit}>
             <Form.Group controlId='meetup-form__title'>
@@ -87,6 +100,46 @@ const NewMeetupForm: React.FC = (): JSX.Element => {
               </Form.Control.Feedback>
               <Form.Control.Feedback type='invalid'>
                 {errors.imageUrl}
+              </Form.Control.Feedback>
+            </Form.Group>
+
+            <Form.Group controlId='meetup-form__date'>
+              <Form.Label>Date</Form.Label>
+              <Form.Control
+                type='date'
+                name='date'
+                value={values.date}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                isValid={touched.date && !errors.date}
+                isInvalid={touched.date && !!errors.date}
+                required
+              />
+              <Form.Control.Feedback type='invalid'>
+                {errors.date}
+              </Form.Control.Feedback>
+              <Form.Control.Feedback type='valid'>
+                Looks good!
+              </Form.Control.Feedback>
+            </Form.Group>
+
+            <Form.Group controlId='meetup-form__time'>
+              <Form.Label>Time</Form.Label>
+              <Form.Control
+                type='time'
+                name='time'
+                value={values.time}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                isValid={touched.time && !errors.time}
+                isInvalid={touched.time && !!errors.time}
+                required
+              />
+              <Form.Control.Feedback type='invalid'>
+                {errors.time}
+              </Form.Control.Feedback>
+              <Form.Control.Feedback type='valid'>
+                Looks good!
               </Form.Control.Feedback>
             </Form.Group>
 
@@ -134,6 +187,7 @@ const NewMeetupForm: React.FC = (): JSX.Element => {
             <Button type='submit' disabled={isSubmitting}>
               {isSubmitting ? 'Uploading…' : 'Submit'}
             </Button>
+            <pre>{JSON.stringify(values, null, 2)}</pre>
           </Form>
         )}
       </Formik>
