@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { MeetupDataType } from '../../pages/NewMeetup';
 import { v4 as uuid4 } from 'uuid';
@@ -20,7 +20,7 @@ const schema = Yup.object().shape({
   description: Yup.string().min(15).max(255).required(),
 });
 
-interface NewMeetupFormProps {
+export interface NewMeetupFormProps {
   onAddMeetup: (meetupData: MeetupDataType) => void;
 }
 
@@ -28,7 +28,7 @@ const NewMeetupForm: React.FC<NewMeetupFormProps> = (props): JSX.Element => {
   const { onAddMeetup } = props;
 
   return (
-    <>
+    <Fragment>
       <h1>Register Your Meetup</h1>
       <Formik
         initialValues={{
@@ -187,11 +187,10 @@ const NewMeetupForm: React.FC<NewMeetupFormProps> = (props): JSX.Element => {
             <Button type='submit' disabled={isSubmitting}>
               {isSubmitting ? 'Uploading…' : 'Submit'}
             </Button>
-            <pre>{JSON.stringify(values, null, 2)}</pre>
           </Form>
         )}
       </Formik>
-    </>
+    </Fragment>
   );
 };
 

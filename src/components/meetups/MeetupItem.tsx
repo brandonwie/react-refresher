@@ -1,22 +1,39 @@
 import { Button, Card, Col, Row } from 'react-bootstrap';
+import moment from 'moment';
 
-interface MeetupItemProps {
+export interface MeetupItemProps {
   id: string;
   title: string;
-  image: string;
+  imageUrl: string;
   address: string;
+  time: string;
+  date: string;
   description: string;
 }
 
-export const MeetupItem = (props: MeetupItemProps) => {
+const MeetupItem: React.FC<MeetupItemProps> = ({
+  imageUrl,
+  title,
+  time,
+  date,
+  address,
+  description,
+}: MeetupItemProps): JSX.Element => {
+  const dateAndTime = `${date} ${time}`;
+  const parsedDateAndTime = moment(dateAndTime).format('h:mm a, MMMM Do YYYY');
+
   return (
     <Row className='meetup-item-row'>
       <Col className='d-flex justify-content-center'>
         <Card className='meetup-item-card'>
-          <Card.Img variant='top' src={props.image} />
+          <Card.Img variant='top' src={imageUrl} />
           <Card.Body>
-            <Card.Title>{props.title}</Card.Title>
-            <Card.Text>{props.description}</Card.Text>
+            <Card.Title>{title}</Card.Title>
+            <Card.Subtitle className='mb-2 text-muted'>
+              {parsedDateAndTime}
+            </Card.Subtitle>
+            <Card.Subtitle className='mb-2 text-muted'>{address}</Card.Subtitle>
+            <Card.Text>{description}</Card.Text>
             <Button variant='primary'>To Favorites</Button>
           </Card.Body>
         </Card>
@@ -24,3 +41,5 @@ export const MeetupItem = (props: MeetupItemProps) => {
     </Row>
   );
 };
+
+export default MeetupItem;

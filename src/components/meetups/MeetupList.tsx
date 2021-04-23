@@ -1,13 +1,20 @@
-import { DUMMY_DATA } from '../../pages/dummy-data';
-import { MeetupItem } from './MeetupItem';
+import { Fragment } from 'react';
+import MeetupItem, { MeetupItemProps } from './MeetupItem';
 
-export const MeetupList: React.FC = (): JSX.Element => {
+interface MeetupListProps {
+  data: MeetupItemProps[];
+}
+
+export const MeetupList: React.FC<MeetupListProps> = (
+  props: MeetupListProps
+): JSX.Element => {
+  const { data } = props;
   return (
-    <>
+    <Fragment>
       <h1>All Meetups</h1>
-      {DUMMY_DATA.map((data) => {
-        return <MeetupItem key={data.id} {...data} />;
+      {data.map((meetup: MeetupItemProps) => {
+        return <MeetupItem key={meetup.id} {...meetup} />;
       })}
-    </>
+    </Fragment>
   );
 };

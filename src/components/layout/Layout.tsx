@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import MainNavigation from './MainNavigation';
 
 interface LayoutProps {
@@ -7,10 +7,10 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = (props: LayoutProps): JSX.Element => {
   return (
-    <>
+    <Fragment>
       <MainNavigation />
       <main>{props.children}</main>
-    </>
+    </Fragment>
   );
 };
 
