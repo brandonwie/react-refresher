@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import MeetupItem, { MeetupItemProps } from './MeetupItem';
 
-interface MeetupListProps {
+export interface MeetupListProps {
   data: MeetupItemProps[];
 }
 
