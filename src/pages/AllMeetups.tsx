@@ -29,10 +29,6 @@ const AllMeetups: React.FC = (): JSX.Element => {
         setLoadedMeetups(meetups);
       })
       .catch((error) => console.log(error.message));
-
-    return () => {
-      setIsLoading(false);
-    };
   }, []);
 
   return (

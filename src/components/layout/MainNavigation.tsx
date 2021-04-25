@@ -1,6 +1,10 @@
-import { Button, Form, FormControl, Nav, Navbar } from 'react-bootstrap';
+import { Badge, Button, Form, FormControl, Nav, Navbar } from 'react-bootstrap';
+import { useContext } from 'react';
+import FavoritesContext from '../../store/favorites-context';
 
 const MainNavigation: React.FC = (): JSX.Element => {
+  const favoritesCtx = useContext(FavoritesContext);
+
   return (
     <header className='header'>
       <Navbar expand='md' fixed='top' bg='primary' variant='dark'>
@@ -10,7 +14,11 @@ const MainNavigation: React.FC = (): JSX.Element => {
           <Nav className='mr-auto'>
             <Nav.Link href='/'>Meetups</Nav.Link>
             <Nav.Link href='/new-meetup'>New Meetup</Nav.Link>
-            <Nav.Link href='/favorites'>Favorites</Nav.Link>
+            <Nav.Link href='/favorites'>
+              Favorites
+              <Badge variant='danger'>{favoritesCtx.totalFavorites}</Badge>
+              <span className='sr-only'>favorite meetups</span>
+            </Nav.Link>
           </Nav>
           <Form inline>
             <FormControl type='text' placeholder='Search' className='mr-sm-2' />

@@ -1,4 +1,3 @@
-import { ReactChildren } from 'react';
 import { createContext, useState } from 'react';
 import { MeetupItemProps } from '../components/meetups/MeetupItem';
 
@@ -11,32 +10,38 @@ interface FavoritesContextType {
 }
 
 // Capital F because createContext contains React component
-const FavoritesContext = createContext<FavoritesContextType>({
+// Default values
+export const FavoritesContext = createContext<FavoritesContextType>({
   favorites: [],
   totalFavorites: 0,
-  addFavorite: (favoriteMeetup) => {},
-  removeFavorite: (meetupId) => {},
-  itemIsFavorite: (meetupId) => true || false,
+  addFavorite: () => {},
+  removeFavorite: () => {},
+  itemIsFavorite: () => true || false,
 });
 
 interface FavoritesContextProviderProps {
-  data: MeetupItemProps[];
-  children: ReactChildren;
+  children: React.ReactNode;
 }
 
-const FavoritesContextProvider = (props: FavoritesContextProviderProps) => {
+export const FavoritesContextProvider = (
+  props: FavoritesContextProviderProps
+) => {
   const [userFavorites, setUserFavorites] = useState<MeetupItemProps[]>([]);
 
-  const addFavoriteHandler = (favoriteMeetup: MeetupItemProps) => {
-    setUserFavorites((prevUserFavorites: MeetupItemProps[]) => {
-      return prevUserFavorites.concat(favoriteMeetup);
-    });
+  const addFavoriteHandler = (favoriteMeetup: MeetupItemProps): void => {
+    setUserFavorites(
+      (prevUserFavorites: MeetupItemProps[]): MeetupItemProps[] => {
+        return prevUserFavorites.concat(favoriteMeetup);
+      }
+    );
   };
 
-  const removeFavoriteHandler = (meetupId: string) => {
-    setUserFavorites((prevUserFavorites: MeetupItemProps[]) => {
-      return prevUserFavorites.filter((meetup) => meetup.id !== meetupId);
-    });
+  const removeFavoriteHandler = (meetupId: string): void => {
+    setUserFavorites(
+      (prevUserFavorites: MeetupItemProps[]): MeetupItemProps[] => {
+        return prevUserFavorites.filter((meetup) => meetup.id !== meetupId);
+      }
+    );
   };
 
   const itemIsFavoriteHandler = (meetupId: string): boolean => {
@@ -59,4 +64,4 @@ const FavoritesContextProvider = (props: FavoritesContextProviderProps) => {
   );
 };
 
-export default FavoritesContextProvider;
+export default FavoritesContext;

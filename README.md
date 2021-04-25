@@ -1,46 +1,36 @@
-# Getting Started with Create React App
+# ReactJS Refresher
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<a href="https://www.typescriptlang.org/"><img src="https://img.icons8.com/color/48/000000/typescript.png" alt="TypeScript Logo"/></a> <a href='https://reactjs.org/'><img src="https://www.pinclipart.com/picdir/middle/537-5374089_react-js-logo-clipart.png" width="48" alt="React Logo"></a> <a href="https://formik.org/"><img src="https://user-images.githubusercontent.com/4060187/61057426-4e5a4600-a3c3-11e9-9114-630743e05814.png" width="48" alt="Formik Logo"></a> <a href="https://react-bootstrap.github.io/"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--bSimDHKi--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/m9brm89w3tbmdohgjfgm.png" width="48" alt="TypeScript Logo"/></a> <a href="https://firebase.google.com/"><img src="https://www.gstatic.com/devrel-devsite/prod/vdb246b8cc5a5361484bf12c07f2d17c993026d30a19ea3c7ace6f0263f62c0dd/firebase/images/touchicon-180.png" width="48" alt="TypeScript Logo"/></a>
 
-## Available Scripts
+A Simple Meetup App skeleton work which is a part of [Next.js & React - The Complete Guide](https://www.udemy.com/course/nextjs-react-the-complete-guide/) on Udemy.
 
-In the project directory, you can run:
+Nonetheless, this practice is built with TypeScript unlike the original work with JavaScript. Feel free to play around with my code if you wish.
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Clone this repo:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```console
+git clone https://github.com/brandonwie/react-refresher.git [folderName]
+```
 
-### `npm test`
+Inside the directory installed:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```console
+npm install
+```
 
-### `npm run build`
+Navigate to `localhost:3000`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Stacks used
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- ReactJS v17
+- Context API
+- Formik + Bootstrap combination
+- Firebase Realtime Database
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Takeaways
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Seems Formik with React-Bootstrap requires more codes compared to Formik with MaterialUI
+- Context API resets to initial state whenever any of DOMs re-renders (to make the data persist, need to use localStorage for instance)
+- Could improve this project using Context Reducer and localStorage.
