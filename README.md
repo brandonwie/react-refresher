@@ -41,3 +41,9 @@ Main page
 ![Main](/screenshots/meetups.jpg)
 Register page
 ![Register](/screenshots/register.jpg)
+
+## Notes
+
+- Search tab in Navbar does not have any function.
+- Registering your Meetup will actually communicate with my Firebase database, if it doesn't connect, you can simply create your own free-tier Realtime database and connect it.
+- `To Favorites` & `Remove from Favorites` buttons actually changes ContextAPI state(check with Chrome React Devtool), but it resets when you visit Favorites page because there's no local storage working.
