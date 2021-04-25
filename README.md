@@ -34,3 +34,10 @@ Navigate to `localhost:3000`
 - Seems Formik with React-Bootstrap requires more codes compared to Formik with MaterialUI
 - Context API resets to initial state whenever any of DOMs re-renders (to make the data persist, need to use localStorage for instance)
 - Could improve this project using Context Reducer and localStorage.
+
+## Screenshots
+
+Main page
+![Main](/screenshots/meetups.jpg)
+Register page
+![Register](/screenshots/register.jpg)
